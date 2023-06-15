@@ -1,0 +1,60 @@
+@import url("https://fonts.cdnfonts.com/css/alarm-clock");
+@font-face {
+  font-family: sevenSegment;
+  src: url(../assets/14\ Segment\ LED\ Regular.ttf);
+}
+body {
+  background-color: #222;
+  font-family: "Courier New", Courier, monospace;
+}
+
+#container {
+  margin-left: auto;
+  margin-right: auto;
+  align-self: center;
+  text-align: center;
+  width: 50vw;
+  font-size: 3rem;
+  color: black;
+}
+#container:hover {
+  cursor: default;
+}
+#container #clock {
+  margin-left: auto;
+  margin-right: auto;
+  width: 700px;
+  font-size: 10rem;
+  font-family: "alarm clock", sevenSegment;
+  background-color: rgb(51, 153, 78);
+}
+
+#set-cuenta-atras {
+  font-weight: 600;
+  color: #babab9;
+}
+#set-cuenta-atras input {
+  align-self: center;
+  text-align: center;
+  height: 50px;
+  width: 50px;
+  font-size: 2rem;
+  background-color: inherit;
+  color: inherit;
+  border: #234 2px solid;
+}
+#set-cuenta-atras label {
+  cursor: pointer;
+}
+#set-cuenta-atras button {
+  background-color: rgb(51, 153, 78);
+  border-color: #234;
+  font-size: 2rem;
+  height: 50px;
+  width: 10vw;
+  cursor: pointer;
+}
+
+.hidde {
+  display: none;
+}/*# sourceMappingURL=main.css.map */
