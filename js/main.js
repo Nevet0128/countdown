@@ -1,4 +1,7 @@
 const d = document,
+  $alarmIcon = d.getElementById("alarm-icon"),
+  $audioAlarm = d.getElementById("audio-alarm"),
+  $audioVolume = d.getElementById("audio-volume"),
   $clock = d.getElementById("clock"),
   $hours = d.getElementById("hours"),
   $minutes = d.getElementById("minutes"),
@@ -6,8 +9,10 @@ const d = document,
   $pause = d.getElementById("pause"),
   $resume = d.getElementById("resume"),
   $restart = d.getElementById("restart"),
-  $delete = d.getElementById("delete");
+  $delete = d.getElementById("delete"),
+  $songBar = d.getElementById("song-bar");
 
+//for countDown
 let totalSeconds = 0,
   isPaused = false,
   endCountdown = false;
@@ -18,8 +23,11 @@ const countDown = () => {
 
   let countDown = setInterval(() => {
     if (totalSeconds === 0) {
+      $pause.classList.add("hidde");
+
       clearInterval(countDown);
       $clock.textContent = "TIME!";
+      $audioAlarm.play();
       return;
     }
 
@@ -81,7 +89,9 @@ d.addEventListener("click", (e) => {
     $restart.classList.add("hidde");
     $delete.classList.add("hidde");
 
+    $clock.textContent = "00:00:00";
     endCountdown = true;
+    $audioAlarm.load();
   }
 
   if (e.target === $delete) {
@@ -91,8 +101,46 @@ d.addEventListener("click", (e) => {
     $resume.classList.add("hidde");
     $delete.classList.add("hidde");
 
+    $clock.textContent = "00:00:00";
     endCountdown = true;
     $hours.value = 0;
     $minutes.value = 0;
+    $audioAlarm.load();
   }
 });
+
+/*MUSIC BAR*/
+
+$songBar.setAttribute("min", 0);
+$songBar.setAttribute("max", $audioAlarm.duration);
+$songBar.value = 0;
+$audioAlarm.volume = 0.1;
+
+$audioAlarm.addEventListener("timeupdate", (e) => {
+  //para filtrar decimales ✅
+  if (Math.round($audioAlarm.currentTime) != $songBar.value) {
+    $songBar.value = Math.round($audioAlarm.currentTime);
+  }
+});
+
+d.addEventListener("change", (e) => {
+  if (e.target == $audioVolume) {
+    $audioAlarm.volume = $audioVolume.value;
+  }
+
+  if (e.target == $songBar) {
+    $audioAlarm.currentTime = e.target.value;
+  }
+});
+
+/*TODO
+-> duration indicates the length of the element's media in seconds. ✅
+https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/duration
+
+-> SECCIÓN DE MÚSICA
+  -Que sea un sticky
+  - Encerrarlo en un div para acomodarlo aparte
+
+-> visualizador de audio con la WEB API 
+https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API
+*/
