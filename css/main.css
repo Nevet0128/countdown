@@ -3,6 +3,16 @@
   font-family: sevenSegment;
   src: url(../assets/14\ Segment\ LED\ Regular.ttf);
 }
+img {
+  height: 110px;
+  width: auto;
+  position: fixed;
+}
+img#alarmIcon {
+  left: 47vw;
+  top: 33px;
+}
+
 body {
   background-color: #222;
   font-family: "Courier New", Courier, monospace;
@@ -23,10 +33,12 @@ body {
 #container #clock {
   margin-left: auto;
   margin-right: auto;
-  width: 700px;
+  width: auto;
+  margin: 60px auto;
   font-size: 10rem;
   font-family: "alarm clock", sevenSegment;
   background-color: rgb(51, 153, 78);
+  border-radius: 50px 10px;
 }
 
 #set-cuenta-atras {
@@ -51,7 +63,7 @@ body {
   border-color: #234;
   font-size: 2rem;
   height: 50px;
-  width: 10vw;
+  width: 180px;
   cursor: pointer;
 }
 
