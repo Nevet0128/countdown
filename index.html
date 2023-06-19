@@ -7,7 +7,28 @@
     <link rel="stylesheet" href="./css/main.css" />
   </head>
   <body>
+    <img
+      id="alarm-icon"
+      class="hidde"
+      src="./assets/alarm.png"
+      alt="alarm icon"
+    />
+    <audio id="" src="assets/Alarm-ringtone.mp3"></audio>
+    <audio id="audio-alarm" src="assets/MOTFD-dramatic.mp3"></audio>
+
     <main id="container">
+      <input type="range" id="song-bar" step="1" />
+
+      <span>🔊</span>
+      <input
+        type="range"
+        min="0"
+        max="1"
+        step="0.1"
+        value="0.1"
+        id="audio-volume"
+      />
+
       <p id="clock">00:00:00</p>
 
       <div id="set-cuenta-atras">
