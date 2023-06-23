@@ -13,27 +13,19 @@
       src="./assets/alarm.png"
       alt="alarm icon"
     />
-    <audio id="" src="assets/Alarm-ringtone.mp3"></audio>
-    <audio id="audio-alarm" src="assets/MOTFD-dramatic.mp3"></audio>
+    <audio id="audio-alarm" src="assets/Alarm-ringtone.mp3"></audio>
+    <audio id="" src="assets/MOTFD-dramatic.mp3"></audio>
+    <div id="clock"></div>
+
+    <h1 id="main-title">STUDY TIME</h1>
+
+    <section id="to-do-list"></section>
 
     <main id="container">
-      <input type="range" id="song-bar" step="1" />
+      <div id="date"></div>
+      <p id="count-down">00:00:00</p>
 
-      <span>🔊</span>
-      <input
-        type="range"
-        min="0"
-        max="1"
-        step="0.1"
-        value="0.1"
-        id="audio-volume"
-      />
-
-      <p id="clock">00:00:00</p>
-
-      <div id="set-cuenta-atras">
-        <p>INICIAR CUENTA ATRÁS</p>
-
+      <div id="set-count-down">
         <label for="hours">Horas: </label>
         <input type="text" id="hours" />
         <label for="minutes">Minutos: </label>
@@ -46,6 +38,21 @@
         <button id="delete" class="hidde">Eliminar</button>
       </div>
     </main>
+
+    <section id="music-section">
+      <input type="range" id="song-bar" step="1" />
+
+      <span id="volume-icon">🔊</span>
+      <input
+        type="range"
+        min="0"
+        max="1"
+        step="0.1"
+        value="0.1"
+        id="audio-volume"
+      />
+      <textarea name="" id="" cols="30" rows="10"></textarea>
+    </section>
   </body>
 
   <script src="./js/main.js"></script>
