@@ -14,8 +14,40 @@ img#alarmIcon {
 }
 
 body {
+  display: grid;
+  grid-template-areas: "header header header" "toDo   main   music";
+  grid-template-rows: 20% 80%;
+  grid-template-columns: 15% 70% 15%;
   background-color: #222;
   font-family: "Courier New", Courier, monospace;
+}
+
+#clock {
+  margin-left: auto;
+  margin-right: auto;
+  align-self: center;
+  text-align: center;
+  position: absolute;
+  top: 50px;
+  right: 7vw;
+  font-size: 2rem;
+  color: #babab9;
+}
+
+#main-title {
+  margin-left: auto;
+  margin-right: auto;
+  align-self: center;
+  text-align: center;
+  font-weight: 600;
+  color: #babab9;
+  font-size: 4.3rem;
+  margin: 1vh auto;
+  grid-area: header;
+}
+
+#to-do-list {
+  grid-area: toDo;
 }
 
 #container {
@@ -23,29 +55,31 @@ body {
   margin-right: auto;
   align-self: center;
   text-align: center;
-  width: 50vw;
+  font-weight: 600;
   font-size: 3rem;
-  color: black;
+  color: #babab9;
+  grid-area: main;
+}
+#container #date {
+  margin: 5vh auto;
 }
 #container:hover {
   cursor: default;
 }
-#container #clock {
+#container #count-down {
   margin-left: auto;
   margin-right: auto;
+  color: black;
   width: auto;
-  margin: 60px auto;
+  margin: 5vh auto;
   font-size: 10rem;
+  font-weight: 400;
   font-family: "alarm clock", sevenSegment;
   background-color: rgb(51, 153, 78);
   border-radius: 50px 10px;
 }
 
-#set-cuenta-atras {
-  font-weight: 600;
-  color: #babab9;
-}
-#set-cuenta-atras input {
+#set-count-down input {
   align-self: center;
   text-align: center;
   height: 50px;
@@ -55,16 +89,25 @@ body {
   color: inherit;
   border: #234 2px solid;
 }
-#set-cuenta-atras label {
+#set-count-down label {
   cursor: pointer;
 }
-#set-cuenta-atras button {
+#set-count-down button {
   background-color: rgb(51, 153, 78);
   border-color: #234;
   font-size: 2rem;
   height: 50px;
   width: 180px;
   cursor: pointer;
+}
+
+#music-section {
+  grid-area: music;
+}
+
+#volume-icon {
+  margin: auto;
+  padding: auto;
 }
 
 .hidde {
