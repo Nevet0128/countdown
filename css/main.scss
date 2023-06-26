@@ -1,0 +1,195 @@
+@font-face {
+  font-family: sevenSegment;
+  src: url(../assets/14\ Segment\ LED\ Regular.ttf);
+}
+@import url("https://fonts.cdnfonts.com/css/alarm-clock");
+
+@mixin horizontalCenter() {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@mixin textCenter() {
+  align-self: center;
+  text-align: center;
+}
+
+img {
+  height: 110px;
+  width: auto;
+
+  position: fixed;
+
+  &#alarmIcon {
+    left: 47vw;
+    top: 33px;
+  }
+}
+
+body {
+  display: grid;
+  grid-template-areas:
+    "header header header"
+    "toDo   main   music";
+  grid-template-rows: 20% 80%;
+  grid-template-columns: 15% 70% 15%;
+
+  background-color: #222;
+  font-family: "Courier New", Courier, monospace;
+}
+
+#clock {
+  @include horizontalCenter();
+  @include textCenter();
+
+  position: absolute;
+  top: 50px;
+  right: 7vw;
+  font-size: 2rem;
+  color: #babab9;
+}
+
+#main-title {
+  @include horizontalCenter();
+  @include textCenter();
+  font-weight: 600;
+  color: #babab9;
+  font-size: 4.3rem;
+
+  margin: 1vh auto;
+
+  grid-area: header;
+}
+
+#to-do-list {
+  grid-area: toDo;
+}
+
+#container {
+  @include horizontalCenter();
+  @include textCenter();
+
+  font-weight: 600;
+  font-size: 3rem;
+  color: #babab9;
+
+  grid-area: main;
+
+  #date {
+    margin: 5vh auto;
+  }
+
+  &:hover {
+    cursor: default;
+  }
+
+  #count-down {
+    @include horizontalCenter();
+    color: black;
+    width: auto;
+    margin: 5vh auto;
+    font-size: 10rem;
+    font-weight: 400;
+    font-family: "alarm clock", sevenSegment;
+    background-color: rgb(51, 153, 78);
+    border-radius: 50px 10px;
+  }
+}
+
+#set-count-down {
+  input {
+    @include textCenter();
+    height: 50px;
+    width: 50px;
+    font-size: 2rem;
+    background-color: inherit;
+    color: inherit;
+    border: #234 2px solid;
+  }
+
+  label {
+    cursor: pointer;
+  }
+
+  button {
+    background-color: rgb(51, 153, 78);
+    border-color: #234;
+    font-size: 2rem;
+    height: 50px;
+    width: 180px;
+    cursor: pointer;
+  }
+}
+
+#music-section {
+  grid-area: music;
+}
+
+#volume-icon {
+  margin: auto;
+  padding: auto;
+}
+
+.hidde {
+  display: none;
+}
+
+/*********** Baseline, reset styles ***********/
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+  width: 10rem;
+}
+
+/* Removes default focus */
+input[type="range"]:focus {
+  outline: none;
+}
+
+/******** Chrome, Safari, Opera and Edge Chromium styles ********/
+/* slider track */
+input[type="range"]::-webkit-slider-runnable-track {
+  background-color: #33994e;
+  border-radius: 0.5rem;
+  height: 0.5rem;
+}
+
+/* slider thumb */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  margin-top: -4px; /* Centers thumb on the track */
+  background-color: #aa14e1;
+  border-radius: 0.5rem;
+  height: 1rem;
+  width: 1rem;
+}
+
+input[type="range"]:focus::-webkit-slider-thumb {
+  outline: 3px solid #aa14e1;
+  outline-offset: 0.125rem;
+}
+
+/*********** Firefox styles ***********/
+/* slider track */
+input[type="range"]::-moz-range-track {
+  background-color: #33994e;
+  border-radius: 0.5rem;
+  height: 0.5rem;
+}
+
+/* slider thumb */
+input[type="range"]::-moz-range-thumb {
+  background-color: #aa14e1;
+  border: none; /*Removes extra border that FF applies*/
+  border-radius: 0.5rem;
+  height: 1rem;
+  width: 1rem;
+}
+
+input[type="range"]:focus::-moz-range-thumb {
+  outline: 3px solid #aa14e1;
+  outline-offset: 0.125rem;
+}

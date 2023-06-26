@@ -116,6 +116,31 @@ function setClock() {
   }
 }
 
+function startClock(setManual, stop) {
+  //if the countdown starts
+  if (setManual) {
+    //Changing the date if the day ends
+    if (todaysDate.getHours() === 0 && todaysDate.getMinutes() === 0) {
+      setDate();
+    }
+    setClock();
+  } else {
+    const clock = setInterval(() => {
+      //Changing the date if the day ends
+      if (todaysDate.getHours() === 0 && todaysDate.getMinutes() === 0) {
+        setDate();
+      }
+
+      if (stop) {
+        clearInterval(clock);
+        return;
+      }
+
+      setClock();
+    }, 1000);
+  }
+}
+
 /* const countDown2 = () => {
       setInterval(() => {
     currentMilliseconds = Date.now();
@@ -163,23 +188,20 @@ function setClock() {
       $countDown.textContent = `${getHours}:${getMinutes}:${getSeconds}`;
     }
   }, 1000);
-
+  
   return;
 }; */
 
 setDate();
-setClock();
+startClock(false, false);
 
-const countDown = () => {
+function countDown() {
   totalSeconds = $hours.value * 3600;
   totalSeconds += $minutes.value * 60;
 
-  //Changing the date if the day ends
-  if (todaysDate.getHours() === 0 && todaysDate.getMinutes() === 0) {
-    setDate();
-  }
-
   let countDown = setInterval(() => {
+    startClock(true, true);
+
     if (totalSeconds === 0) {
       $pause.classList.add("hidde");
 
@@ -214,7 +236,7 @@ const countDown = () => {
   }, 1000);
 
   return;
-};
+}
 
 d.addEventListener("click", (e) => {
   if (e.target === $start) {
@@ -242,6 +264,7 @@ d.addEventListener("click", (e) => {
     $pause.classList.add("hidde");
     $resume.classList.remove("hidde");
 
+    startClock(false, false); //kinda SUS
     isPaused = true;
   }
 
@@ -249,6 +272,7 @@ d.addEventListener("click", (e) => {
     $resume.classList.add("hidde");
     $pause.classList.remove("hidde");
 
+    startClock(true, true); //kinda SUS x2
     isPaused = false;
   }
 
@@ -261,6 +285,8 @@ d.addEventListener("click", (e) => {
     $countDown.textContent = "00:00:00";
     endCountdown = true;
     $audioAlarm.load();
+
+    startClock(false, false);
   }
 
   if (e.target === $delete) {
@@ -275,6 +301,8 @@ d.addEventListener("click", (e) => {
     $hours.value = 0;
     $minutes.value = 0;
     $audioAlarm.load();
+
+    startClock(false, false);
   }
 });
 
