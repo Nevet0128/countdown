@@ -1,0 +1,54 @@
+#toDo-container {
+  grid-area: toDo;
+
+  display: flex;
+  flex-direction: column;
+
+  list-style-type: none;
+  gap: 5px;
+}
+
+.toDo-section {
+  width: 100%;
+  background-color: #7b7676;
+}
+
+.task {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  gap: 10px;
+
+  margin: 5px;
+
+  background-color: #5aacc4;
+
+  p {
+    margin: 0;
+    padding: 0;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+#set-task {
+  height: 7vh;
+}
+
+#pending-task {
+  height: 30vh;
+  min-height: 10vh;
+}
+
+#task-completed {
+  height: auto;
+  min-height: 20vh;
+}
+
+.completed {
+  background-color: gray;
+  color: rgb(151, 8, 8);
+}

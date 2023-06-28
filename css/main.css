@@ -1,4 +1,138 @@
 @import url("https://fonts.cdnfonts.com/css/alarm-clock");
+#music-section {
+  grid-area: music;
+  background-color: #7b7676;
+  height: 30vh;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.bar-container {
+  width: auto;
+}
+
+#volume-icon {
+  width: 20px;
+  height: 20px;
+  margin: auto;
+  padding: auto;
+}
+
+.hidde {
+  display: none;
+}
+
+/*********** Baseline, reset styles ***********/
+#music-section input[type=range] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+       appearance: none;
+  background: transparent;
+  cursor: pointer;
+  width: 10rem;
+}
+
+/* Removes default focus */
+input[type=range]:focus {
+  outline: none;
+}
+
+/******** Chrome, Safari, Opera and Edge Chromium styles ********/
+/* slider track */
+input[type=range]::-webkit-slider-runnable-track {
+  background-color: #33994e;
+  border-radius: 0.5rem;
+  height: 0.5rem;
+}
+
+/* slider thumb */
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  margin-top: -4px; /* Centers thumb on the track */
+  background-color: #aa14e1;
+  border-radius: 0.5rem;
+  height: 1rem;
+  width: 1rem;
+}
+
+input[type=range]:focus::-webkit-slider-thumb {
+  outline: 3px solid #aa14e1;
+  outline-offset: 0.125rem;
+}
+
+/*********** Firefox styles ***********/
+/* slider track */
+input[type=range]::-moz-range-track {
+  background-color: #33994e;
+  border-radius: 0.5rem;
+  height: 0.5rem;
+}
+
+/* slider thumb */
+input[type=range]::-moz-range-thumb {
+  background-color: #aa14e1;
+  border: none; /*Removes extra border that FF applies*/
+  border-radius: 0.5rem;
+  height: 1rem;
+  width: 1rem;
+}
+
+input[type=range]:focus::-moz-range-thumb {
+  outline: 3px solid #aa14e1;
+  outline-offset: 0.125rem;
+}
+
+#toDo-container {
+  grid-area: toDo;
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  gap: 5px;
+}
+
+.toDo-section {
+  width: 100%;
+  background-color: #7b7676;
+}
+
+.task {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  gap: 10px;
+  margin: 5px;
+  background-color: #5aacc4;
+}
+.task p {
+  margin: 0;
+  padding: 0;
+}
+.task:hover {
+  cursor: pointer;
+}
+
+#set-task {
+  height: 7vh;
+}
+
+#pending-task {
+  height: 30vh;
+  min-height: 10vh;
+}
+
+#task-completed {
+  height: auto;
+  min-height: 20vh;
+}
+
+.completed {
+  background-color: gray;
+  color: rgb(151, 8, 8);
+}
+
 @font-face {
   font-family: sevenSegment;
   src: url(../assets/14\ Segment\ LED\ Regular.ttf);
@@ -44,10 +178,6 @@ body {
   font-size: 4.3rem;
   margin: 1vh auto;
   grid-area: header;
-}
-
-#to-do-list {
-  grid-area: toDo;
 }
 
 #container {
@@ -99,17 +229,4 @@ body {
   height: 50px;
   width: 180px;
   cursor: pointer;
-}
-
-#music-section {
-  grid-area: music;
-}
-
-#volume-icon {
-  margin: auto;
-  padding: auto;
-}
-
-.hidde {
-  display: none;
 }/*# sourceMappingURL=main.css.map */

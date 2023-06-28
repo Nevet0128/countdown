@@ -19,7 +19,16 @@
 
     <h1 id="main-title">STUDY TIME</h1>
 
-    <section id="to-do-list"></section>
+    <section id="toDo-container">
+      <div class="toDo-section" id="set-task">
+        <input type="text" id="new-task" />
+        <button id="add-task">Añadir</button>
+      </div>
+
+      <div class="toDo-section" id="pending-task"></div>
+
+      <div class="toDo-section" id="completed-task"></div>
+    </section>
 
     <main id="container">
       <div id="date"></div>
@@ -40,20 +49,31 @@
     </main>
 
     <section id="music-section">
-      <input type="range" id="song-bar" step="1" />
+      <div class="bar-container">
+        <input type="range" id="song-bar" step="1" />
+      </div>
 
-      <span id="volume-icon">🔊</span>
-      <input
-        type="range"
-        min="0"
-        max="1"
-        step="0.1"
-        value="0.1"
-        id="audio-volume"
-      />
-      <textarea name="" id="" cols="30" rows="10"></textarea>
+      <div class="bar-container">
+        <span id="volume-icon">🔊</span>
+        <input
+          type="range"
+          min="0"
+          max="1"
+          step="0.1"
+          value="0.1"
+          id="audio-volume"
+        />
+      </div>
     </section>
+
+    <template id="toDo-template">
+      <label class="task">
+        <span></span>
+        <input type="checkbox" />
+      </label>
+    </template>
   </body>
 
   <script src="./js/main.js"></script>
+  <script src="./js/toDo-section.js"></script>
 </html>
