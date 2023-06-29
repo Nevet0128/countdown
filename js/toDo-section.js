@@ -32,13 +32,15 @@ d.addEventListener("click", (e) => {
       : manageTask($newTask.value, "new-task");
   }
 
-  if (e.target == d.querySelector("li")) {
-    let parentElementId = e.target.parentElement.id,
-      taskText = e.target.textContent;
+  d.querySelectorAll("li").forEach((li) => {
+    if (e.target == li) {
+      let parentElementId = e.target.parentElement.id,
+        taskText = e.target.textContent;
 
-    console.log("tarea:", e.target.textContent, "padre:", parentElementId);
+      console.log("tarea:", e.target.textContent, "padre:", parentElementId);
 
-    e.target.remove();
-    manageTask(taskText, parentElementId);
-  }
+      e.target.remove();
+      manageTask(taskText, parentElementId);
+    }
+  });
 });
