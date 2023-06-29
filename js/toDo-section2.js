@@ -1,4 +1,5 @@
-const $toDoTemplate = d.getElementById("toDo-template").content, //template to make tasks
+const $toDoContainer = d.getElementById("toDo-container"),
+  $toDoTemplate = d.getElementById("toDo-template").content, //template to make tasks
   $newTask = d.getElementById("new-task"), //input:text for new task
   $addTask = d.getElementById("add-task"), //button for ass task
   $pendingTask = d.getElementById("pending-task"), //container

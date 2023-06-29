@@ -1,4 +1,5 @@
-const $setTask = d.getElementById("set-task"),
+const $toDoContainer = d.getElementById("toDo-container"),
+  $setTask = d.getElementById("set-task"),
   $newTask = d.getElementById("new-task"),
   $addTask = d.getElementById("add-task"),
   $pendingTask = d.getElementById("pending-task"),
@@ -12,7 +13,7 @@ function manageTask(text, parentElement) {
     $li.textContent = text;
     $li.setAttribute("class", "task");
 
-    $pendingTask.appendChild($li);
+    $pendingTask.insertAdjacentElement("beforeend", $li);
     $newTask.value = "";
   }
 
@@ -21,9 +22,17 @@ function manageTask(text, parentElement) {
     $li.textContent = text;
     $li.setAttribute("class", "task completed");
 
-    $completedTask.appendChild($li);
+    $completedTask.insertAdjacentElement("beforeend", $li);
   }
 }
+
+$newTask.addEventListener("keyup", (e) => {
+  if (e.which === 13) {
+    !$newTask.value
+      ? alert("No puedes añadir una tarea vacía")
+      : manageTask($newTask.value, "new-task");
+  }
+});
 
 d.addEventListener("click", (e) => {
   if (e.target == $addTask) {
@@ -31,7 +40,9 @@ d.addEventListener("click", (e) => {
       ? alert("No puedes añadir una tarea vacía")
       : manageTask($newTask.value, "new-task");
   }
+});
 
+$toDoContainer.addEventListener("click", (e) => {
   d.querySelectorAll("li").forEach((li) => {
     if (e.target == li) {
       let parentElementId = e.target.parentElement.id,

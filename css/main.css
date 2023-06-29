@@ -1,4 +1,8 @@
 @import url("https://fonts.cdnfonts.com/css/alarm-clock");
+@font-face {
+  font-family: sevenSegment;
+  src: url(../assets/14\ Segment\ LED\ Regular.ttf);
+}
 #music-section {
   grid-area: music;
   background-color: #7b7676;
@@ -51,14 +55,14 @@ input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none; /* Override default look */
   appearance: none;
   margin-top: -4px; /* Centers thumb on the track */
-  background-color: #aa14e1;
+  background-color: #8217a9;
   border-radius: 0.5rem;
   height: 1rem;
   width: 1rem;
 }
 
 input[type=range]:focus::-webkit-slider-thumb {
-  outline: 3px solid #aa14e1;
+  outline: 3px solid #8217a9;
   outline-offset: 0.125rem;
 }
 
@@ -93,50 +97,81 @@ input[type=range]:focus::-moz-range-thumb {
 }
 
 .toDo-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  gap: 5px;
+  font-weight: 800;
   width: 100%;
-  background-color: #7b7676;
+  padding-left: 10px;
+}
+.toDo-section h2 {
+  align-self: center;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 10px;
+  color: #babab9;
 }
 
 .task {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  flex-wrap: nowrap;
-  gap: 10px;
-  margin: 5px;
+  padding: 8px;
+  border-radius: 1000px;
   background-color: #5aacc4;
-}
-.task p {
-  margin: 0;
-  padding: 0;
+  min-height: 20px;
+  overflow-x: auto;
 }
 .task:hover {
   cursor: pointer;
+  background-color: rgb(160, 25, 25);
+  color: whitesmoke;
 }
 
 #set-task {
-  height: 7vh;
+  height: 90px;
+}
+#set-task input {
+  background-color: whitesmoke;
+  height: 30px;
+  padding-left: 8px;
+  font-size: 1rem;
+  border: 0;
+  border-radius: 1000px;
+}
+#set-task input:focus {
+  outline: none;
+}
+#set-task button {
+  width: 100px;
+  height: 30px;
+  align-self: center;
+  color: black;
+  font-size: 1rem;
+  background-color: rgb(51, 153, 78);
+  border-radius: 500px;
+}
+#set-task button:hover {
+  cursor: pointer;
 }
 
 #pending-task {
   height: 30vh;
   min-height: 10vh;
+  overflow-y: auto;
 }
 
-#task-completed {
-  height: auto;
+#completed-task {
+  height: 30vh;
   min-height: 20vh;
+  overflow-y: auto;
 }
 
 .completed {
-  background-color: gray;
-  color: rgb(151, 8, 8);
+  background-color: rgb(160, 25, 25);
+  color: #babab9;
 }
 
-@font-face {
-  font-family: sevenSegment;
-  src: url(../assets/14\ Segment\ LED\ Regular.ttf);
-}
 img {
   height: 110px;
   width: auto;

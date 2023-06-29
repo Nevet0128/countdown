@@ -1,6 +1,3 @@
-@import "./music-section";
-@import "./toDo-section";
-
 @font-face {
   font-family: sevenSegment;
   src: url(../assets/14\ Segment\ LED\ Regular.ttf);
@@ -16,6 +13,9 @@
   align-self: center;
   text-align: center;
 }
+
+@import "./music-section";
+@import "./toDo-section";
 
 img {
   height: 110px;

@@ -9,46 +9,90 @@
 }
 
 .toDo-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  gap: 5px;
+
+  font-weight: 800;
+
   width: 100%;
-  background-color: #7b7676;
+
+  padding-left: 10px;
+
+  h2 {
+    @include textCenter();
+
+    padding: 0;
+    margin: 0;
+    margin-bottom: 10px;
+
+    color: #babab9;
+  }
 }
 
 .task {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  flex-wrap: nowrap;
-  gap: 10px;
-
-  margin: 5px;
-
+  padding: 8px;
+  border-radius: 1000px;
   background-color: #5aacc4;
 
-  p {
-    margin: 0;
-    padding: 0;
-  }
+  min-height: 20px;
+  overflow-x: auto;
 
   &:hover {
     cursor: pointer;
+    background-color: rgb(160, 25, 25);
+    color: whitesmoke;
   }
 }
 
 #set-task {
-  height: 7vh;
+  height: 90px;
+
+  input {
+    background-color: whitesmoke;
+    height: 30px;
+    padding-left: 8px;
+    font-size: 1rem;
+    border: 0;
+    border-radius: 1000px;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  button {
+    width: 100px;
+    height: 30px;
+    align-self: center;
+
+    color: black;
+    font-size: 1rem;
+    background-color: rgb(51, 153, 78);
+
+    border-radius: 500px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
 }
 
 #pending-task {
   height: 30vh;
   min-height: 10vh;
+  overflow-y: auto;
 }
 
-#task-completed {
-  height: auto;
+#completed-task {
+  height: 30vh;
   min-height: 20vh;
+  overflow-y: auto;
 }
 
 .completed {
-  background-color: gray;
-  color: rgb(151, 8, 8);
+  background-color: rgb(160, 25, 25);
+  color: #babab9;
 }
