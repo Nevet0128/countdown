@@ -14,17 +14,9 @@
   text-align: center;
 }
 
-@import "./music-section";
-@import "./toDo-section";
-
-#alarmIcon {
-  height: 110px;
-  width: auto;
-
-  position: fixed;
-  left: 47vw;
-  top: 33px;
-}
+@import "./music";
+@import "./to-do";
+@import "./time";
 
 body {
   display: grid;
@@ -36,17 +28,6 @@ body {
 
   background-color: #222;
   font-family: "Courier New", Courier, monospace;
-}
-
-#clock {
-  @include horizontalCenter();
-  @include textCenter();
-
-  position: absolute;
-  top: 50px;
-  left: 3vw;
-  font-size: 2rem;
-  color: #babab9;
 }
 
 #main-title {

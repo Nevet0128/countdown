@@ -1,13 +1,4 @@
 const d = document,
-  $alarmIcon = d.getElementById("alarm-icon"),
-  $audioAlarm = d.getElementById("audio-alarm"),
-  $audioVolume = d.getElementById("audio-volume"),
-  $playlist = d.getElementById("rain-and-thunder-sounds"),
-  $playSong = d.getElementById("play-song"),
-  $pauseSong = d.getElementById("pause-song"),
-  $previousSong = d.getElementById("previous-song"),
-  $nextSong = d.getElementById("next-song"),
-  $aleatorySong = d.getElementById("aleatory-song"),
   $countDown = d.getElementById("count-down"),
   $hours = d.getElementById("hours"),
   $minutes = d.getElementById("minutes"),
@@ -15,8 +6,7 @@ const d = document,
   $pause = d.getElementById("pause"),
   $resume = d.getElementById("resume"),
   $restart = d.getElementById("restart"),
-  $delete = d.getElementById("delete"),
-  $songBar = d.getElementById("song-bar");
+  $delete = d.getElementById("delete");
 
 //for countDown
 let totalSeconds = 0,
@@ -124,41 +114,6 @@ d.addEventListener("click", (e) => {
   }
 });
 
-/*MUSIC BAR*/
-
-d.addEventListener("click", (e) => {
-  if (e.target === $playSong) {
-    $playlist.play();
-  }
-
-  if (e.target === $pauseSong) {
-    $playlist.pause();
-  }
-});
-
-$songBar.setAttribute("min", 0);
-$songBar.setAttribute("max", $playlist.duration);
-$songBar.value = 0;
-$playlist.volume = 0.1;
-$audioAlarm.volume = 0.1;
-
-$playlist.addEventListener("timeupdate", (e) => {
-  //para filtrar decimales ✅
-  if (Math.round($playlist.currentTime) != $songBar.value) {
-    $songBar.value = Math.round($playlist.currentTime);
-  }
-});
-
-d.addEventListener("change", (e) => {
-  if (e.target == $audioVolume) {
-    $playlist.volume = $audioVolume.value;
-  }
-
-  if (e.target == $songBar) {
-    $playlist.currentTime = e.target.value;
-  }
-});
-
 /*TODO
 ❗❗❗❗❗ Aprender FIGMA para tener clases y ID concretos para facilitar el CSS ❗❗❗❗❗
 
@@ -188,16 +143,4 @@ por mal funcionamiento
 que se ha estudiado
   -Ponerlo debajo de todo, que ocupe el 100 vw y vh
   -Cuando se marque un objetivo del TODO
-    cambiar el fondo de un color morado de la casilla del día
-
--> SECCIÓN DE MÚSICA
-  -Haciendo pruebas con la API en thunderbird
-  -Conectar con la API haciendo
-  -Ponerlo a la derecha
-  - Encerrarlo en un div para acomodarlo aparte
-
-
-
--> visualizador de audio con la WEB API 
-https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API
-*/
+    cambiar el fondo de un color morado de la casilla del día*/

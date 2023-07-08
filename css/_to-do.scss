@@ -6,6 +6,16 @@
 
   list-style-type: none;
   gap: 5px;
+
+  h2 {
+    @include textCenter();
+
+    padding: 0;
+    margin: 0;
+    margin-bottom: 10px;
+
+    color: #babab9;
+  }
 }
 
 .toDo-section {
@@ -18,16 +28,6 @@
   font-weight: 800;
 
   width: 100%;
-
-  h2 {
-    @include textCenter();
-
-    padding: 0;
-    margin: 0;
-    margin-bottom: 10px;
-
-    color: #babab9;
-  }
 }
 
 .task {
@@ -44,7 +44,7 @@
   min-height: 20px;
   overflow-x: auto;
 
-  transition: transform 1s ease-in-out;
+  transition: all 0.3s ease-in-out;
 
   &:hover {
     cursor: pointer;

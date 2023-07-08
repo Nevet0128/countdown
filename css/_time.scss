@@ -1,0 +1,19 @@
+#alarmIcon {
+  height: 110px;
+  width: auto;
+
+  position: fixed;
+  left: 47vw;
+  top: 33px;
+}
+
+#clock {
+  @include horizontalCenter();
+  @include textCenter();
+
+  position: absolute;
+  top: 50px;
+  left: 2vw;
+  font-size: 2rem;
+  color: #babab9;
+}

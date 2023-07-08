@@ -88,6 +88,7 @@ function startTime() {
 
   m = checkTime(m);
   s = checkTime(s);
+  h = checkTime(h);
 
   $clock.textContent = h + ":" + m + ":" + s;
 
