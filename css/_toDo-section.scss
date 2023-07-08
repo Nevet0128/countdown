@@ -19,8 +19,6 @@
 
   width: 100%;
 
-  padding-left: 10px;
-
   h2 {
     @include textCenter();
 
@@ -33,12 +31,20 @@
 }
 
 .task {
-  padding: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  width: 90%;
+
+  padding: 10px;
   border-radius: 1000px;
   background-color: #5aacc4;
 
   min-height: 20px;
   overflow-x: auto;
+
+  transition: transform 1s ease-in-out;
 
   &:hover {
     cursor: pointer;
@@ -95,4 +101,9 @@
 .completed {
   background-color: rgb(160, 25, 25);
   color: #babab9;
+}
+
+.delete {
+  font-size: 1rem;
+  font-weight: 800;
 }

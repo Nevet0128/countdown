@@ -3,7 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Estudiar</title>
+    <title>Study time</title>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="assets/icons8-open-book-96.png"
+    />
     <link rel="stylesheet" href="./css/main.css" />
   </head>
   <body>
@@ -15,11 +20,17 @@
     />
     <audio id="audio-alarm" src="assets/Alarm-ringtone.mp3"></audio>
     <audio id="" src="assets/MOTFD-dramatic.mp3"></audio>
+    <audio
+      id="rain-and-thunder-sounds"
+      src="assets/Rain Sound and Thunder.mp3"
+    ></audio>
     <div id="clock"></div>
 
     <h1 id="main-title">STUDY TIME</h1>
 
     <section id="toDo-container">
+      <h2 class="toDo-section">Añadir tareas</h2>
+
       <div class="toDo-section" id="set-task">
         <input type="text" id="new-task" />
         <button id="add-task">Añadir</button>
@@ -57,7 +68,7 @@
         <input type="range" id="song-bar" step="1" />
       </div>
 
-      <div class="bar-container">
+      <div class="bar-container" id="volume-bar">
         <span id="volume-icon">🔊</span>
         <input
           type="range"
@@ -68,14 +79,27 @@
           id="audio-volume"
         />
       </div>
-    </section>
 
-    <template id="toDo-template">
-      <label class="task">
-        <span></span>
-        <input type="checkbox" />
-      </label>
-    </template>
+      <div class="bar-container" id="music-handler">
+        <img
+          id="previous-song"
+          src="assets/previous-icon.png"
+          alt="previous song icon"
+        />
+        <img
+          id="pause-song"
+          src="assets/pause-icon.png"
+          alt="pause song icon"
+        />
+        <img id="play-song" src="assets/play-icon.png" alt="play song icon" />
+        <img id="next-song" src="assets/next-icon.png" alt="next song icon" />
+        <img
+          id="aleatory-song"
+          src="assets/aleatory-icon.png"
+          alt="aleatory song icon"
+        />
+      </div>
+    </section>
   </body>
 
   <script src="./js/main.js"></script>

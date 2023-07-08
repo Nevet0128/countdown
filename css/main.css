@@ -11,6 +11,10 @@
   flex-direction: column;
   gap: 50px;
 }
+#music-section img {
+  height: 1.3rem;
+  width: auto;
+}
 
 .bar-container {
   width: auto;
@@ -104,7 +108,6 @@ input[type=range]:focus::-moz-range-thumb {
   gap: 5px;
   font-weight: 800;
   width: 100%;
-  padding-left: 10px;
 }
 .toDo-section h2 {
   align-self: center;
@@ -116,11 +119,16 @@ input[type=range]:focus::-moz-range-thumb {
 }
 
 .task {
-  padding: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 90%;
+  padding: 10px;
   border-radius: 1000px;
   background-color: #5aacc4;
   min-height: 20px;
   overflow-x: auto;
+  transition: transform 1s ease-in-out;
 }
 .task:hover {
   cursor: pointer;
@@ -172,12 +180,15 @@ input[type=range]:focus::-moz-range-thumb {
   color: #babab9;
 }
 
-img {
+.delete {
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+#alarmIcon {
   height: 110px;
   width: auto;
   position: fixed;
-}
-img#alarmIcon {
   left: 47vw;
   top: 33px;
 }
@@ -198,7 +209,7 @@ body {
   text-align: center;
   position: absolute;
   top: 50px;
-  right: 7vw;
+  left: 3vw;
   font-size: 2rem;
   color: #babab9;
 }

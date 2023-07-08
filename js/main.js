@@ -2,9 +2,13 @@ const d = document,
   $alarmIcon = d.getElementById("alarm-icon"),
   $audioAlarm = d.getElementById("audio-alarm"),
   $audioVolume = d.getElementById("audio-volume"),
-  $clock = d.getElementById("clock"),
+  $playlist = d.getElementById("rain-and-thunder-sounds"),
+  $playSong = d.getElementById("play-song"),
+  $pauseSong = d.getElementById("pause-song"),
+  $previousSong = d.getElementById("previous-song"),
+  $nextSong = d.getElementById("next-song"),
+  $aleatorySong = d.getElementById("aleatory-song"),
   $countDown = d.getElementById("count-down"),
-  $date = d.getElementById("date"),
   $hours = d.getElementById("hours"),
   $minutes = d.getElementById("minutes"),
   $start = d.getElementById("start"),
@@ -17,191 +21,13 @@ const d = document,
 //for countDown
 let totalSeconds = 0,
   isPaused = false,
-  endCountdown = false,
-  todaysDate = new Date(),
-  hours = todaysDate.getHours(),
-  minutes = todaysDate.getMinutes();
-
-$clock.textContent = `${hours}:${minutes}`;
-
-function setDate() {
-  let getDay = todaysDate.getDay(),
-    getDayN = todaysDate.getDate(),
-    getMonth = todaysDate.getMonth(),
-    getYear = todaysDate.getFullYear();
-
-  switch (getMonth) {
-    case 0:
-      month = "Enero";
-      break;
-    case 1:
-      month = "Febrero";
-      break;
-    case 2:
-      month = "Marzo";
-      break;
-    case 3:
-      month = "Abril";
-      break;
-    case 4:
-      month = "Mayo";
-      break;
-    case 5:
-      month = "Junio";
-      break;
-    case 6:
-      month = "Julio";
-      break;
-    case 7:
-      month = "Agosto";
-      break;
-    case 8:
-      month = "Septiembre";
-      break;
-    case 9:
-      month = "Octubre";
-      break;
-    case 10:
-      month = "Noviembre";
-      break;
-    case 11:
-      month = "Diciembre";
-      break;
-
-    default:
-      break;
-  }
-
-  switch (getDay) {
-    case 0:
-      day = "Domingo";
-      break;
-    case 1:
-      day = "Lunes";
-      break;
-    case 2:
-      day = "Martes";
-      break;
-    case 3:
-      day = "Miercoles";
-      break;
-    case 4:
-      day = "Jueves";
-      break;
-    case 5:
-      day = "Viernes";
-      break;
-    case 6:
-      day = "Sabado";
-      break;
-
-    default:
-      break;
-  }
-
-  $date.textContent = `${day}, ${getDayN} de ${month} del ${getYear}`;
-}
-
-function setClock() {
-  hours = todaysDate.getHours();
-  if (hours / 10 < 1) hours = `0${hours}`;
-
-  minutes = todaysDate.getMinutes();
-  if (minutes / 10 < 1) minutes = `0${minutes}`;
-
-  if (hours <= 11) {
-    $clock.textContent = `${hours}:${minutes} AM`;
-  } else {
-    $clock.textContent = `${hours}:${minutes} PM`;
-  }
-}
-
-function startClock(setManual, stop) {
-  //if the countdown starts
-  if (setManual) {
-    //Changing the date if the day ends
-    if (todaysDate.getHours() === 0 && todaysDate.getMinutes() === 0) {
-      setDate();
-    }
-    setClock();
-  } else {
-    const clock = setInterval(() => {
-      //Changing the date if the day ends
-      if (todaysDate.getHours() === 0 && todaysDate.getMinutes() === 0) {
-        setDate();
-      }
-
-      if (stop) {
-        clearInterval(clock);
-        return;
-      }
-
-      setClock();
-    }, 1000);
-  }
-}
-
-/* const countDown2 = () => {
-      setInterval(() => {
-    currentMilliseconds = Date.now();
-    hoursToMilliseconds = $hours.value * 3.6e6;
-    minutesToMiliseconds = $minutes.value * 60000;
-    totalUserTime = hoursToMilliseconds + minutesToMiliseconds;
-
-    timeRemaining = currentMilliseconds + totalUserTime - currentMilliseconds;
-
-    //Changing the date if the day ends
-    if (todaysDate.getHours() === 0 && todaysDate.getMinutes() === 0) {
-      setDate();
-    }
-
-    //The count has ended
-    if (timeRemaining <= 0) {
-      $pause.classList.add("hidde");
-
-      clearInterval(countDown);
-      $countDown.textContent = "TIME!";
-      $audioAlarm.play();
-      return;
-    }
-
-    //User clears the count down
-    if (endCountdown === true) {
-      clearInterval(countDown);
-      $countDown.textContent = "00:00:00";
-      return;
-    }
-
-    //User has paused the count down
-    if (isPaused) {
-      setTimeout(() => {
-        timeRemaining + 500;
-      }, 500);
-    } else {
-      //para el resultado
-      getHours = Math.floor(timeRemaining / 3.6e6);
-      getMinutes = Math.floor((timeRemaining % 3.6e6) / 60000);
-      getSeconds = Math.floor(
-        (((hoursToMilliseconds + minutesToMiliseconds) % 3.6e6) % 60000) / 1000
-      );
-
-      $countDown.textContent = `${getHours}:${getMinutes}:${getSeconds}`;
-    }
-  }, 1000);
-  
-  return;
-}; */
-
-setDate();
-startClock(false, false);
+  endCountdown = false;
 
 function countDown() {
   totalSeconds = $hours.value * 3600;
   totalSeconds += $minutes.value * 60;
 
   let countDown = setInterval(() => {
-    startClock(true, true);
-
     if (totalSeconds === 0) {
       $pause.classList.add("hidde");
 
@@ -263,16 +89,12 @@ d.addEventListener("click", (e) => {
   if (e.target === $pause) {
     $pause.classList.add("hidde");
     $resume.classList.remove("hidde");
-
-    startClock(false, false); //kinda SUS
     isPaused = true;
   }
 
   if (e.target === $resume) {
     $resume.classList.add("hidde");
     $pause.classList.remove("hidde");
-
-    startClock(true, true); //kinda SUS x2
     isPaused = false;
   }
 
@@ -285,8 +107,6 @@ d.addEventListener("click", (e) => {
     $countDown.textContent = "00:00:00";
     endCountdown = true;
     $audioAlarm.load();
-
-    startClock(false, false);
   }
 
   if (e.target === $delete) {
@@ -301,36 +121,41 @@ d.addEventListener("click", (e) => {
     $hours.value = 0;
     $minutes.value = 0;
     $audioAlarm.load();
-
-    startClock(false, false);
   }
 });
 
 /*MUSIC BAR*/
 
+d.addEventListener("click", (e) => {
+  if (e.target === $playSong) {
+    $playlist.play();
+  }
+
+  if (e.target === $pauseSong) {
+    $playlist.pause();
+  }
+});
+
 $songBar.setAttribute("min", 0);
-$songBar.setAttribute("max", $audioAlarm.duration);
+$songBar.setAttribute("max", $playlist.duration);
 $songBar.value = 0;
+$playlist.volume = 0.1;
 $audioAlarm.volume = 0.1;
 
-$audioAlarm.addEventListener("timeupdate", (e) => {
+$playlist.addEventListener("timeupdate", (e) => {
   //para filtrar decimales ✅
-  if (Math.round($audioAlarm.currentTime) != $songBar.value) {
-    $songBar.value = Math.round($audioAlarm.currentTime);
+  if (Math.round($playlist.currentTime) != $songBar.value) {
+    $songBar.value = Math.round($playlist.currentTime);
   }
 });
 
 d.addEventListener("change", (e) => {
-  if (e.target == $clock) {
-    setClock();
-  }
-
   if (e.target == $audioVolume) {
-    $audioAlarm.volume = $audioVolume.value;
+    $playlist.volume = $audioVolume.value;
   }
 
   if (e.target == $songBar) {
-    $audioAlarm.currentTime = e.target.value;
+    $playlist.currentTime = e.target.value;
   }
 });
 

@@ -17,16 +17,13 @@
 @import "./music-section";
 @import "./toDo-section";
 
-img {
+#alarmIcon {
   height: 110px;
   width: auto;
 
   position: fixed;
-
-  &#alarmIcon {
-    left: 47vw;
-    top: 33px;
-  }
+  left: 47vw;
+  top: 33px;
 }
 
 body {
@@ -47,7 +44,7 @@ body {
 
   position: absolute;
   top: 50px;
-  right: 7vw;
+  left: 3vw;
   font-size: 2rem;
   color: #babab9;
 }

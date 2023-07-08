@@ -8,8 +8,10 @@ const $toDoContainer = d.getElementById("toDo-container"),
 function manageTask(text, parentElement) {
   //let taskList = JSON.parse(localStorage.getItem("tasks")); esa recomendación ta buena para guardar las tareas
 
-  if (parentElement == "new-task" || parentElement == "completed-task") {
+  //if (parentElement == "new-task" || parentElement == "completed-task")
+  if (parentElement == "new-task") {
     let $li = d.createElement("li");
+
     $li.textContent = text;
     $li.setAttribute("class", "task");
 
@@ -19,6 +21,7 @@ function manageTask(text, parentElement) {
 
   if (parentElement == "pending-task") {
     let $li = d.createElement("li");
+
     $li.textContent = text;
     $li.setAttribute("class", "task completed");
 
@@ -48,10 +51,13 @@ $toDoContainer.addEventListener("click", (e) => {
       let parentElementId = e.target.parentElement.id,
         taskText = e.target.textContent;
 
-      console.log("tarea:", e.target.textContent, "padre:", parentElementId);
+      //console.log("tarea:", e.target.textContent, "padre:", parentElementId);
 
       e.target.remove();
-      manageTask(taskText, parentElementId);
+
+      if (!(parentElementId == "completed-task")) {
+        manageTask(taskText, parentElementId);
+      }
     }
   });
 });
