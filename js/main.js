@@ -8,6 +8,25 @@ const d = document,
   $restart = d.getElementById("restart"),
   $delete = d.getElementById("delete");
 
+//not autopause when losing focus
+(function () {
+  window.addEventListener("focus", function () {
+    document.hasFocus = function () {
+      return true;
+    };
+  });
+
+  window.addEventListener("blur", function () {
+    document.hasFocus = function () {
+      return true;
+    };
+  });
+
+  document.hasFocus = function () {
+    return true;
+  };
+})();
+
 //for countDown
 let totalSeconds = 0,
   isPaused = false,
