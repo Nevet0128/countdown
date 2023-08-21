@@ -1,63 +1,102 @@
-const $toDoContainer = d.getElementById("toDo-container"),
-  $setTask = d.getElementById("set-task"),
-  $newTask = d.getElementById("new-task"),
-  $addTask = d.getElementById("add-task"),
-  $pendingTask = d.getElementById("pending-task"),
-  $completedTask = d.getElementById("completed-task");
+const $toDoContainer = d.getElementById('toDo-container'),
+  $setTask = d.getElementById('set-task'),
+  $newTask = d.getElementById('new-task'),
+  $addTask = d.getElementById('add-task'),
+  $pendingTask = d.getElementById('pending-task'),
+  $completedTask = d.getElementById('completed-task')
 
-function manageTask(text, parentElement) {
-  //let taskList = JSON.parse(localStorage.getItem("tasks")); esa recomendación ta buena para guardar las tareas
+const manageTasks = {
+  retrieveSavedTasks: () => {
+    let retrieveTasks = localStorage.getItem('pendingTasks')
 
-  //if (parentElement == "new-task" || parentElement == "completed-task")
-  if (parentElement == "new-task") {
-    let $li = d.createElement("li");
+    if (!retrieveTasks) return
 
-    $li.textContent = text;
-    $li.setAttribute("class", "task");
+    const tasks = Object.values(JSON.parse(retrieveTasks))
 
-    $pendingTask.insertAdjacentElement("beforeend", $li);
-    $newTask.value = "";
-  }
+    tasks.forEach((el) => manageTasks.moveTask(el, 'new-task'))
+  },
 
-  if (parentElement == "pending-task") {
-    let $li = d.createElement("li");
+  moveTask: function (text, parentElement) {
+    if (parentElement == 'new-task') {
+      let $li = d.createElement('li')
 
-    $li.textContent = text;
-    $li.setAttribute("class", "task completed");
+      $li.textContent = text
+      $li.setAttribute('class', 'task')
 
-    $completedTask.insertAdjacentElement("beforeend", $li);
-  }
+      $pendingTask.insertAdjacentElement('beforeend', $li)
+      $newTask.value = ''
+    }
+
+    if (parentElement == 'pending-task') {
+      let $li = d.createElement('li')
+
+      $li.textContent = text
+      $li.setAttribute('class', 'task completed')
+
+      $completedTask.insertAdjacentElement('beforeend', $li)
+    }
+  },
+
+  storeTask: (text) => {
+    if (!localStorage.getItem('pendingTasks')) {
+      localStorage.setItem('pendingTasks', `{"0":"${text}"}`)
+    } else {
+      const retrieveTasks = Object.values(
+        JSON.parse(localStorage.getItem('pendingTasks'))
+      )
+      retrieveTasks.push(text)
+      const updatedTasks = JSON.stringify({ ...retrieveTasks })
+
+      localStorage.setItem('pendingTasks', updatedTasks)
+    }
+  },
+
+  deleteStoredTask: (text) => {
+    const retrieveTasks = Object.values(
+        JSON.parse(localStorage.getItem('pendingTasks'))
+      ),
+      deleteTask = retrieveTasks.filter((el) => el != text),
+      updatedTasks = JSON.stringify({ ...deleteTask })
+
+    localStorage.setItem('pendingTasks', updatedTasks)
+  },
 }
 
-$newTask.addEventListener("keyup", (e) => {
-  if (e.which === 13) {
-    !$newTask.value
-      ? alert("No puedes añadir una tarea vacía")
-      : manageTask($newTask.value, "new-task");
-  }
-});
-
-d.addEventListener("click", (e) => {
-  if (e.target == $addTask) {
-    !$newTask.value
-      ? alert("No puedes añadir una tarea vacía")
-      : manageTask($newTask.value, "new-task");
-  }
-});
-
-$toDoContainer.addEventListener("click", (e) => {
-  d.querySelectorAll("li").forEach((li) => {
+$toDoContainer.addEventListener('click', (e) => {
+  d.querySelectorAll('li').forEach((li) => {
     if (e.target == li) {
       let parentElementId = e.target.parentElement.id,
-        taskText = e.target.textContent;
+        taskText = e.target.textContent
 
-      //console.log("tarea:", e.target.textContent, "padre:", parentElementId);
-
-      e.target.remove();
-
-      if (!(parentElementId == "completed-task")) {
-        manageTask(taskText, parentElementId);
+      if (parentElementId === 'pending-task') {
+        // se completa la tarea y pasa a la sección de tareas completadas
+        manageTasks.deleteStoredTask(taskText)
+        manageTasks.moveTask(taskText, parentElementId)
       }
+
+      e.target.remove()
     }
-  });
-});
+  })
+})
+
+$newTask.addEventListener('keyup', (e) => {
+  // enter
+  if (e.which === 13) {
+    if (!$newTask.value) alert('No puedes añadir una tarea vacía')
+
+    manageTasks.storeTask($newTask.value)
+    manageTasks.moveTask($newTask.value, 'new-task')
+  }
+})
+
+d.addEventListener('click', (e) => {
+  // click
+  if (e.target == $addTask) {
+    if (!$newTask.value) alert('No puedes añadir una tarea vacía')
+
+    manageTasks.storeTask($newTask.value)
+    manageTasks.moveTask($newTask.value, 'new-task')
+  }
+})
+
+document.addEventListener('DOMContentLoaded', manageTasks.retrieveSavedTasks)
