@@ -225,10 +225,83 @@
   color: #babab9;
 }
 
+#calendar {
+  grid-area: calendar;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 10px;
+  height: auto;
+  min-height: 100hv;
+  width: 100%;
+}
+#calendar .meses {
+  width: 661px;
+  height: auto;
+  min-height: auto;
+  color: #babab9;
+  align-items: center;
+}
+#calendar .titulo-mes {
+  text-align: center;
+  font-size: 2rem;
+  margin: 0;
+  border-bottom: 2px solid #babab9;
+  background-color: rgb(51, 153, 78);
+}
+#calendar .titulo-mes:hover {
+  cursor: default;
+}
+#calendar .nombre-dias {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  gap: 45px;
+  width: 100%;
+  height: auto;
+  font-size: 1.4rem;
+  margin-top: 20px;
+}
+#calendar .nombre-dias:hover {
+  cursor: default;
+}
+#calendar .seccion-dias {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  text-align: center;
+  width: 100%;
+  height: auto;
+  margin: 20px 0;
+}
+#calendar .seccion-dias .numero-dia {
+  font-size: 1.3rem;
+  height: 30px;
+  width: 90px;
+  margin: 0;
+  border-style: solid;
+  border-width: 1px;
+  box-sizing: border-box;
+}
+#calendar .seccion-dias .numero-dia:hover {
+  cursor: pointer;
+}
+#calendar .seccion-dias .dia-relleno {
+  height: 30px;
+  width: 90px;
+  margin: 0;
+}
+#calendar .marked {
+  background-color: rgb(140, 12, 12);
+}
+
 body {
   display: grid;
-  grid-template-areas: "header header header" "toDo   main   music";
-  grid-template-rows: 20% 80%;
+  grid-template-areas: "header   header   header" "toDo     main     music" "calendar calendar calendar";
+  grid-template-rows: auto auto auto;
   grid-template-columns: 15% 70% 15%;
   background-color: #222;
   font-family: "Courier New", Courier, monospace;
