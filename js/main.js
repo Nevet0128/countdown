@@ -1,79 +1,97 @@
 const d = document,
-  $countDown = d.getElementById("count-down"),
-  $hours = d.getElementById("hours"),
-  $minutes = d.getElementById("minutes"),
-  $start = d.getElementById("start"),
-  $pause = d.getElementById("pause"),
-  $resume = d.getElementById("resume"),
-  $restart = d.getElementById("restart"),
-  $delete = d.getElementById("delete");
+  $countDown = d.getElementById('count-down'),
+  $hours = d.getElementById('hours'),
+  $minutes = d.getElementById('minutes'),
+  $start = d.getElementById('start'),
+  $pause = d.getElementById('pause'),
+  $resume = d.getElementById('resume'),
+  $restart = d.getElementById('restart'),
+  $delete = d.getElementById('delete')
 
 //not autopause when losing focus
-(function () {
-  window.addEventListener("focus", function () {
+;(function () {
+  window.addEventListener('focus', function () {
     document.hasFocus = function () {
-      return true;
-    };
-  });
+      return true
+    }
+  })
 
-  window.addEventListener("blur", function () {
+  window.addEventListener('blur', function () {
     document.hasFocus = function () {
-      return true;
-    };
-  });
+      return true
+    }
+  })
 
   document.hasFocus = function () {
-    return true;
-  };
-})();
+    return true
+  }
+})()
 
 //for countDown
 let totalSeconds = 0,
   isPaused = false,
-  endCountdown = false;
+  endCountdown = false
 
 function countDown() {
-  totalSeconds = $hours.value * 3600;
-  totalSeconds += $minutes.value * 60;
+  totalSeconds = $hours.value * 3600
+  totalSeconds += $minutes.value * 60
 
   let countDown = setInterval(() => {
     if (totalSeconds === 0) {
-      $pause.classList.add("hidde");
+      // Acabó la cuenta atrás
+      $pause.classList.add('hidde')
 
-      clearInterval(countDown);
-      $countDown.textContent = "TIME!";
-      $audioAlarm.play();
-      return;
+      clearInterval(countDown)
+      $countDown.textContent = 'TIME!'
+      $audioAlarm.play()
+
+      // Cambiar título
+      document.title = 'Study time'
+      return
     }
 
     if (endCountdown === true) {
-      clearInterval(countDown);
-      $countDown.textContent = "00:00:00";
-      return;
+      // Acabó la cuenta atrás
+      clearInterval(countDown)
+      $countDown.textContent = '00:00:00'
+      return
     }
 
     if (isPaused) {
-      setTimeout(() => {}, 500);
+      // Cambiar titulo
+      document.title = `Pausa ${hours}:${minutes}:${seconds}`
+
+      // Pausa
+      setTimeout(() => {}, 500)
     } else {
-      totalSeconds--;
+      // Empieza / reanuda la cuenta atrás
+      totalSeconds--
 
-      hours = Math.floor(totalSeconds / 3600);
-      if (hours / 10 < 1) hours = `0${hours}`;
+      hours = Math.floor(totalSeconds / 3600)
+      if (hours / 10 < 1) hours = `0${hours}`
 
-      minutes = Math.floor((totalSeconds % 3600) / 60);
-      if (minutes / 10 < 1) minutes = `0${minutes}`;
+      minutes = Math.floor((totalSeconds % 3600) / 60)
+      if (minutes / 10 < 1) minutes = `0${minutes}`
 
-      seconds = Math.floor((totalSeconds % 3600) % 60);
-      if (seconds / 10 < 1) seconds = `0${seconds}`;
+      seconds = Math.floor((totalSeconds % 3600) % 60)
+      if (seconds / 10 < 1) seconds = `0${seconds}`
 
-      $countDown.textContent = `${hours}:${minutes}:${seconds}`;
+      $countDown.textContent = `${hours}:${minutes}:${seconds}`
+
+      // Cambiar titulo
+      document.title = `${hours}:${minutes}:${seconds}`
     }
-  }, 1000);
+  }, 1000)
 
-  return;
+  return
 }
 
-d.addEventListener("click", (e) => {
+d.addEventListener('click', (e) => {
+  // Limpiar la casilla en caso de que se seleccione el recuadro de las horas o minutos
+  if (e.target === $hours || e.target === $minutes) {
+    if ($hours.value == '0') $hours.value = ''
+    if ($minutes.value == '0') $minutes.value = ''
+  }
   if (e.target === $start) {
     //Inputs filter
     if (
@@ -82,56 +100,62 @@ d.addEventListener("click", (e) => {
       $minutes.value <= 60 &&
       $minutes.value >= 0
     ) {
-      $start.classList.add("hidde");
-      $pause.classList.remove("hidde");
-      $restart.classList.remove("hidde");
-      $delete.classList.remove("hidde");
-      countDown();
+      $start.classList.add('hidde')
+      $pause.classList.remove('hidde')
+      $restart.classList.remove('hidde')
+      $delete.classList.remove('hidde')
+      countDown()
     } else {
-      alert("Las horas no mayores a 24 y los minutos no mayores a 60");
-      $hours.value = "";
-      $minutes.value = "";
+      alert('Las horas no mayores a 24 y los minutos no mayores a 60')
+      $hours.value = ''
+      $minutes.value = ''
     }
-    endCountdown = false;
+    endCountdown = false
   }
 
   if (e.target === $pause) {
-    $pause.classList.add("hidde");
-    $resume.classList.remove("hidde");
-    isPaused = true;
+    $pause.classList.add('hidde')
+    $resume.classList.remove('hidde')
+    isPaused = true
   }
 
   if (e.target === $resume) {
-    $resume.classList.add("hidde");
-    $pause.classList.remove("hidde");
-    isPaused = false;
+    $resume.classList.add('hidde')
+    $pause.classList.remove('hidde')
+    isPaused = false
   }
 
   if (e.target === $restart) {
-    $start.classList.remove("hidde");
-    $pause.classList.add("hidde");
-    $restart.classList.add("hidde");
-    $delete.classList.add("hidde");
+    // Cambiar título
+    document.title = 'Study time'
 
-    $countDown.textContent = "00:00:00";
-    endCountdown = true;
-    $audioAlarm.load();
+    $start.classList.remove('hidde')
+    $pause.classList.add('hidde')
+    $restart.classList.add('hidde')
+    $delete.classList.add('hidde')
+
+    $countDown.textContent = '00:00:00'
+    endCountdown = true
+    $audioAlarm.load()
   }
 
   if (e.target === $delete) {
-    $start.classList.remove("hidde");
-    $pause.classList.add("hidde");
-    $restart.classList.add("hidde");
-    $resume.classList.add("hidde");
-    $delete.classList.add("hidde");
+    // Cambiar título
+    document.title = 'Study time'
 
-    $countDown.textContent = "00:00:00";
-    endCountdown = true;
-    $hours.value = 0;
-    $minutes.value = 0;
-    $audioAlarm.load();
+    $start.classList.remove('hidde')
+    $pause.classList.add('hidde')
+    $restart.classList.add('hidde')
+    $resume.classList.add('hidde')
+    $delete.classList.add('hidde')
+
+    $countDown.textContent = '00:00:00'
+    endCountdown = true
+    $hours.value = 0
+    $minutes.value = 0
+    $audioAlarm.load()
   }
-});
+})
 
 /*TODO
 ❗❗❗❗❗ Aprender FIGMA para tener clases y ID concretos para facilitar el CSS ❗❗❗❗❗
