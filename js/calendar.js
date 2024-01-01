@@ -1,8 +1,9 @@
 const $calendario = d.getElementById('calendar')
 
 const diasEnMeses = {
+  // Numero de dias que tiene cada mes
   1: 31,
-  2: 28,
+  2: 29,
   3: 31,
   4: 30,
   5: 31,
@@ -16,24 +17,27 @@ const diasEnMeses = {
 }
 
 const nombreDias = ['L', 'M', 'X', 'J', 'V', 'S', 'D']
+//0: LUNES, 1: MARTES, 2:MIÉRCOLES, 3:JUEVES, 4:VIERNES, 5:SÁBADO, 6:DOMINGO
 
 const diaDeInicioMes = [
-  6, //'D'
-  2, //'X'
+  // Numero del dia en el que inicia el mes
+  0, //'L'
+  3, //'J'
+  4, //'V'
+  0, //'L'
   2, //'X'
   5, //'S'
   0, //'L'
   3, //'J'
-  5, //'S'
+  6, //'D'
   1, //'M'
   4, //'V'
   6, //'D'
-  2, //'X'
-  4, //'V'
 ]
 
 function traerCalendario() {
   if (!localStorage.getItem('calendario')) {
+    // Inicializar a nuevo usuario
     let calendarioObjeto = {
       Enero: {},
       Febrero: {},
@@ -48,11 +52,13 @@ function traerCalendario() {
       Noviembre: {},
       Diciembre: {},
     }
+
     window.localStorage.setItem('calendario', JSON.stringify(calendarioObjeto))
 
     return calendarioObjeto
   }
 
+  // Extrae lo que ha guardado el usuario
   let calendarioGuardado = JSON.parse(localStorage.getItem('calendario'))
 
   return calendarioGuardado
@@ -179,12 +185,12 @@ d.addEventListener('click', (e) => {
     let dia = e.target.textContent
 
     if (!hasMarked) {
-      // Añadir fondo verde
+      // Añadir fondo rojo
       e.target.classList.add('marked')
       calendario[mes][dia] = 'marked'
       window.localStorage.setItem('calendario', JSON.stringify(calendario))
     } else {
-      // Remover fondo verde
+      // Remover fondo rojo
       e.target.classList.remove('marked')
       delete calendario[mes][dia]
       window.localStorage.setItem('calendario', JSON.stringify(calendario))
