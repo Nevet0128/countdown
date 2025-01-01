@@ -3,7 +3,7 @@ const $calendario = d.getElementById('calendar')
 const diasEnMeses = {
   // Numero de dias que tiene cada mes
   1: 31,
-  2: 29,
+  2: 28,
   3: 31,
   4: 30,
   5: 31,
@@ -21,18 +21,18 @@ const nombreDias = ['L', 'M', 'X', 'J', 'V', 'S', 'D']
 
 const diaDeInicioMes = [
   // Numero del dia en el que inicia el mes
-  0, //'L'
+  2, //'X'
+  5, //'S'
+  5, //'S'
+  1, //'M'
   3, //'J'
+  6, //'D'
+  1, //'M'
   4, //'V'
   0, //'L'
   2, //'X'
   5, //'S'
   0, //'L'
-  3, //'J'
-  6, //'D'
-  1, //'M'
-  4, //'V'
-  6, //'D'
 ]
 
 function traerCalendario() {
