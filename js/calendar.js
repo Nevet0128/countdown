@@ -17,22 +17,30 @@ const diasEnMeses = {
 }
 
 const nombreDias = ['L', 'M', 'X', 'J', 'V', 'S', 'D']
-//0: LUNES, 1: MARTES, 2:MIÉRCOLES, 3:JUEVES, 4:VIERNES, 5:SÁBADO, 6:DOMINGO
+/*
+  0: LUNES,
+  1: MARTES,
+  2: MIÉRCOLES,
+  3: JUEVES,
+  4: VIERNES,
+  5: SÁBADO,
+  6: DOMINGO
+*/
 
 const diaDeInicioMes = [
   // Numero del dia en el que inicia el mes
+  3, //'J'
+  6, //'D'
+  6, //'D'
   2, //'X'
-  5, //'S'
+  4, //'V'
+  0, //'L'
+  2, //'X'
   5, //'S'
   1, //'M'
   3, //'J'
   6, //'D'
   1, //'M'
-  4, //'V'
-  0, //'L'
-  2, //'X'
-  5, //'S'
-  0, //'L'
 ]
 
 function traerCalendario() {
